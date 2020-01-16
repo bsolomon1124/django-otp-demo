@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<form action="/login/" method="post">
+  {% csrf_token %}
+  <label>Token</label><input type="text" name="token">
+  <input type="hidden" name="next" value="{{ next }}">
+  <label>&nbsp;</label><input type="submit" value="Authenticate">
+</form>
+{% if error %}
+<p style="color:red">The token is invalid.</p>
+{% endif %}
+</head>

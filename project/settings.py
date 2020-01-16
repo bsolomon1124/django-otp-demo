@@ -12,7 +12,16 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 
+AUTHENTICATION_BACKENDS = ['app.auth.OTPBackend']
 MAGIC_TOKEN = "33aee5b31edb41bda8d07f9d6107aaeb"
+# If Joe Schmoe hits /app without authenticating, he gets taken here.
+# e.g. http://127.0.0.1:8000/login/?next=/app/
+LOGIN_URL = "/login/"  # Default: '/accounts/login/'
+# If no 'next' provided, go here from /login/ success
+LOGIN_REDIRECT_URL = "/app/"
+# Django will use browser-length cookies: cookies that expire as soon as
+# the user closes their browser
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

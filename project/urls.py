@@ -16,7 +16,11 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+import app.views
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^app/', include('app.urls')),
+    url(r'^login/', app.views.handle_login),
+    # url(r'^login/', app.views.OTPLoginView.as_view(), name="login"),
 ]
